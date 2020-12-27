@@ -1,0 +1,38 @@
+openapi: 3.0.2
+info:
+  version: ''
+  title: HRHIS API
+  x-logo:
+    url: 'favicon.png'
+  description: 
+    API documentation for endpoints exposing all data and metadata for development of HRIS system software for collection, collation, storage of Human resource for health Information.
+tags:
+  - name: Echo
+    description: Example echo operations
+  - name: User
+    description: Operations about user
+servers:
+  - url: 'http://example.com/api/v1'
+  - url: 'https://example.com/api/v1'
+paths:
+  '/users/{username}':
+    $ref: 'paths/users@{username}.yaml'
+  /echo:
+    $ref: paths/echo.yaml
+components:
+  securitySchemes:
+    main_auth:
+      type: oauth2
+      flows:
+        implicit:
+          authorizationUrl: 'http://example.com/api/oauth/dialog'
+          scopes:
+            'read:users': read users info
+            'write:users': modify or remove users
+    api_key:
+      type: apiKey
+      in: header
+      name: api_key
+    basic_auth:
+      type: http
+      scheme: basic
